@@ -83,7 +83,8 @@ document.querySelector('.check').addEventListener('click', function () {
 document.querySelector('.again').addEventListener('click', function () {
   secretNumber = Math.trunc(Math.random() * 20) + 1;
   document.querySelector('.message').textContent = `Start guessing...`;
-  document.querySelector('.score').textContent = 10;
+  score = 10;
+  document.querySelector('.score').textContent = score;
   document.querySelector('body').style.backgroundColor = '#222';
   document.querySelector('.number').textContent = '?';
   document.querySelector('.number').style.width = '15rem';
