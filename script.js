@@ -21,12 +21,51 @@ document.querySelector('.guess').value = 23;
 console.log(document.querySelector('.guess').value);
 */
 
+const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let score = 10;
+
+document.querySelector('.number').textContent = secretNumber;
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
   console.log(guess, typeof guess);
-
-  if (!guess) {
-    document.querySelector('.message').textContent =
-      '⛔️ No number! Please enter a number';
+  let remainder = guess - secretNumber;
+  if (score > 1) {
+    if (!guess) {
+      document.querySelector('.message').textContent =
+        '🔍 No number! Please enter a number';
+    } else if (guess <= 0 || guess >= 21) {
+      document.querySelector(
+        '.message'
+      ).textContent = `⛔️ ${guess} does not comply with the game rules. Enter a number from 1 to 20, please!`;
+      document.querySelector('.guess').value = '';
+    } else if (guess === secretNumber) {
+      document.querySelector('.message').textContent = '🎉 Correct Number!';
+    } else if (remainder === 1 || remainder === -1) {
+      document.querySelector(
+        '.message'
+      ).textContent = `😎 Almost gueesed. ${guess} is hot🔥`;
+      document.querySelector('.guess').value = '';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else if (guess > secretNumber) {
+      document.querySelector(
+        '.message'
+      ).textContent = `❌ ${guess} is too high! Try one more time!`;
+      document.querySelector('.guess').value = '';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else if (guess < secretNumber) {
+      document.querySelector(
+        '.message'
+      ).textContent = `❌ ${guess} is too low! Try one more time!`;
+      document.querySelector('.guess').value = '';
+      score--;
+      document.querySelector('.score').textContent = score;
+    }
+  } else {
+    document.querySelector('.message').textContent = '💔 Game over';
+    score--;
+    document.querySelector('.score').textContent = score;
   }
 });
