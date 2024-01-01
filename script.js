@@ -7,19 +7,7 @@ DOM is methds and properties WEB APIs of Google, Safari, Bing, FireFox etc. Web 
 Therefore DOM can interact with JS.
 */
 
-// DOM manipulation
-
-/* Example
-console.log(document.querySelector('.message').textContent);
-document.querySelector('.message').textContent = '🎉 Correct Number!';
-console.log(document.querySelector('.message').textContent);
-
-document.querySelector('.number').textContent = '10';
-document.querySelector('.score').textContent = '19';
-
-document.querySelector('.guess').value = 23;
-console.log(document.querySelector('.guess').value);
-*/
+// Code using DOM manipulation
 
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 10;
