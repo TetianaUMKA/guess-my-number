@@ -25,23 +25,34 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 10;
 let highScore = 0;
 
+const displayMessage = function (message) {
+  document.querySelector('.message').textContent = message;
+};
+
+const showScore = function (score) {
+  document.querySelector('.score').textContent = score;
+};
+
+const cleanInput = function () {
+  document.querySelector('.guess').value = '';
+};
+
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
-  console.log(guess, typeof guess);
   let remainder = guess - secretNumber;
+
   if (score > 1) {
     if (!guess) {
-      document.querySelector('.message').textContent =
-        '🔍 No number! Please enter a number';
+      displayMessage('🔍 No number! Please enter a number');
     } else if (guess <= 0 || guess >= 21) {
-      document.querySelector(
-        '.message'
-      ).textContent = `⛔️ ${guess} does not comply with the game rules. Enter a number from 1 to 20, please!`;
-      document.querySelector('.guess').value = '';
+      displayMessage(
+        `⛔️ ${guess} does not comply with the game rules. Enter a number from 1 to 20, please!`
+      );
+      cleanInput();
     } else if (guess === secretNumber) {
-      document.querySelector('.message').textContent = '🎉 Correct Number!';
+      displayMessage('🎉 Correct Number!');
       score--;
-      document.querySelector('.score').textContent = score;
+      showScore(score);
       if (score > highScore) {
         highScore = score;
         document.querySelector('.highscore').textContent = highScore;
@@ -51,43 +62,36 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.number').textContent = secretNumber;
       document.querySelector('.check').style.visibility = 'hidden';
     } else if (remainder === 1 || remainder === -1) {
-      document.querySelector(
-        '.message'
-      ).textContent = `😎 Almost gueesed. ${guess} is hot🔥`;
-      document.querySelector('.guess').value = '';
+      displayMessage(`😎 Almost gueesed. ${guess} is hot🔥`);
+      cleanInput();
       score--;
-      document.querySelector('.score').textContent = score;
-    } else if (guess > secretNumber) {
-      document.querySelector(
-        '.message'
-      ).textContent = `❌ ${guess} is too high! Try one more time!`;
-      document.querySelector('.guess').value = '';
+      showScore(score);
+    } else if (guess > secretNumber || guess < secretNumber) {
+      displayMessage(
+        `❌ ${guess} is too ${
+          guess > secretNumber ? 'high' : 'low'
+        }! Try one more time!`
+      );
+      cleanInput();
       score--;
-      document.querySelector('.score').textContent = score;
-    } else if (guess < secretNumber) {
-      document.querySelector(
-        '.message'
-      ).textContent = `❌ ${guess} is too low! Try one more time!`;
-      document.querySelector('.guess').value = '';
-      score--;
-      document.querySelector('.score').textContent = score;
+      showScore(score);
     }
   } else {
-    document.querySelector('.message').textContent = '💔 Game over';
+    displayMessage('💔 Game over');
     score--;
-    document.querySelector('.score').textContent = score;
+    showScore(score);
     document.querySelector('.check').style.visibility = 'hidden';
   }
 });
 
 document.querySelector('.again').addEventListener('click', function () {
   secretNumber = Math.trunc(Math.random() * 20) + 1;
-  document.querySelector('.message').textContent = `Start guessing...`;
   score = 10;
-  document.querySelector('.score').textContent = score;
+  showScore(score);
+  displayMessage(`Start guessing...`);
+  cleanInput();
   document.querySelector('body').style.backgroundColor = '#222';
-  document.querySelector('.number').textContent = '?';
   document.querySelector('.number').style.width = '15rem';
-  document.querySelector('.guess').value = '';
+  document.querySelector('.number').textContent = '?';
   document.querySelector('.check').style.visibility = 'visible';
 });
