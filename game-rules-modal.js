@@ -20,6 +20,8 @@ const closeModal = function () {
 openGameRulesModalBtn.addEventListener('click', openModal);
 closeGameRulesModalBtn.addEventListener('click', closeModal);
 
+overlay.addEventListener('click', closeModal);
+
 document.addEventListener('keydown', function (e) {
   console.log(e.key); // 'Escape'
   if (e.key === 'Escape' && !gameRulesModal.classList.contains('hidden')) {
