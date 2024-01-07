@@ -3,7 +3,7 @@
 Structured representation of HTML documents. Allows JS to access HTML elements and styles to manipulate them.
 DOM is not a part of JS.
 JS is actually a dialect of ECMA Script.
-DOM is methds and properties WEB APIs of Google, Safari, Bing, FireFox etc. Web APIs are like libraries that a browser implement and we can access from a JS code. Web APIs can read JS code and that is automaticaly availible for us to use.
+DOM is methods and properties WEB APIs of Google, Safari, Bing, FireFox etc. Web APIs are like libraries that a browser implement and we can access from a JS code. Web APIs can read JS code and that is automatically available for us to use.
 Therefore DOM can interact with JS.
 */
 
@@ -39,7 +39,6 @@ document.querySelector('.check').addEventListener('click', function () {
       cleanInput();
     } else if (guess === secretNumber) {
       displayMessage('🎉 Correct Number!');
-      score--;
       showScore(score);
       if (score > highScore) {
         highScore = score;
@@ -50,7 +49,7 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.number').textContent = secretNumber;
       document.querySelector('.check').style.visibility = 'hidden';
     } else if (remainder === 1 || remainder === -1) {
-      displayMessage(`😎 Almost gueesed. ${guess} is hot🔥`);
+      displayMessage(`😎 Almost guessed. ${guess} is hot🔥`);
       cleanInput();
       score--;
       showScore(score);
