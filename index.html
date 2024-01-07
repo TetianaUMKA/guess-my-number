@@ -26,7 +26,23 @@
           🥇 Highscore: <span class="highscore">0</span>
         </p>
       </section>
+      <button class="btn open-game-rules-modal">SHOW GAME RULES</button>
+      <div class="game-rules-modal hidden">
+        <button class="close-game-rules-modal">&times;</button>
+        <h2>GAME RULES</h2>
+        <p class="game-rules-text">
+          The game starts with a score of 10 points. You need guess the secret
+          number. Enter a number from 1 to 20 and check. If the entered number
+          is correct you win, whereas if it is incorrect you lose one point of
+          your score. You can try as long as your score allows. When score
+          becomes empty that is this round of the game is over. You can try
+          again just click the "again" button. Also you can see your highest
+          score among all rounds of the game in "Highscore" line. Good luck🍀!
+        </p>
+      </div>
+      <div class="overlay hidden"></div>
     </main>
     <script src="script.js"></script>
+    <script src="game-rules-modal.js"></script>
   </body>
 </html>
