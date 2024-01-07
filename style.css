@@ -137,6 +137,10 @@ h1 {
   background: none;
 }
 
+.close-game-rules-modal:hover {
+  color: #ccc;
+}
+
 .game-rules-modal {
   position: absolute;
   top: 50%;
